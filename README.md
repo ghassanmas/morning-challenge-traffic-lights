@@ -111,8 +111,7 @@ gif above. :tada:
 
 ### Finished?
 
-Have you solve it using recursion?, where the function called itself, ummm could you solve it with ```setInterval```? check the [W3School](https://www.w3schools.com/jsref/met_win_setinterval.asp) documents about it.
-
+Have you solve it using recursion?, where the function calls itself, could you solve it with ```setInterval```? check the [W3School](https://www.w3schools.com/jsref/met_win_setinterval.asp) documents about it.
 
 ### Solutions:
 
