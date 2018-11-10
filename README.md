@@ -22,45 +22,40 @@ $ git clone https://github.com/foundersandcoders/morning-challenge-traffic-light
 $ npm i && npm run live
 ```
 
-## What is a first-class function?
+## Refreshment on passing function as a parameter
 
-JavaScript's functions are "first-class". This means that they are treated exactly the same as any other type of data (eg, strings, numbers, arrays ect). This allows them to be assigned to variables, stored in arrays, passed to functions as arguments or returned from functions. In JavaScript this means that functions can be passed around, and are only ever invoked when followed by parens ```()```.
 
-Here are some examples of how functions can be used.
+Function could be passed as a  parameter to other function, specially when the function is Async, consider the following the example:
 
-#### Functions can be invoked/called:
 ```
-function greeting(firstName, lastName) {
-  alert('Hello ' + firstName + '  ' + lastName);
-}
-greeting('Bob', 'Belcher'); // Hello Bob Belcher
-```
-
-#### Functions can be assigned to a variable:
-```
-var greeting = function(firstName, lastName) {
-  alert('Hello ' + firstName + '  ' + lastName);
-}
-greeting('Tina', 'Belcher'); // Hello Tina Belcher
-```
-
-#### Functions can be passed around as data:
-```
-function greeting(p1, p2) {
-  return "Hello " + p1 + " and " + p2
+function toggle(){
+ document.getElementById("someElement").classList.toggle();
 }
 
-function firstBelcher() {
-  return "Bob Belcher";
-}
+setTimeout(toggle,1000*5);
+```
+In the above example we are using the builtin JS function ```setTimeout``` to call a function after 5 seconds.
 
-function secondBelcher() {
-  return "Tina Belcher";
-}
 
-greeting(firstBelcher(), secondBelcher()); // Hello Bob Belcher and Tina Belcher
+Now consider this scinario the ```toggle```  function takes a parameter ```id```
+
+```
+function toggle(id){
+ document.getElementById(id).classList.toggle();
+}
 ```
 
+```setTimeout(toggle(id),1000*5);```
+
+Why that above wont work? passing ```toggle(id)``` as parameter will return ```undefined``` since we are not passing function, we are passing whatever the function **return**. and since the function doesn't return anything, it will return ```undefined``` by default
+
+To get around it we can wrap ```toggle(id)``` in an anonymous function such as:
+
+```
+setTimeout(function(){
+toggle(id);
+},1000*5);
+```
 
 
 ## Your task
@@ -69,33 +64,36 @@ Your task is to replicate the traffic lights shown above. The only file you'll
 need to edit is `script.js`. Hopefully the instructional comments will speak for
 themselves.
 
-If you get stuck check out the [hints branch](https://github.com/foundersandcoders/morning-challenge-traffic-lights/tree/hints).
+If you get stuck check out th e [hints branch](https://github.com/foundersandcoders/morning-challenge-traffic-lights/tree/hints).
 
-### Part 1:
+### Part 1 ```light()```:
 
 Light up the first traffic light in the following order:
 
 + :green_apple: green
++ :green_apple: green
 + :sun_with_face: yellow
++ :red_circle: red
++ :red_circle: red
++ :red_circle: red
++ :red_circle: red
++ :red_circle::sun_with_face: red & yellow
+
+### Part 2 ```light2()```:
+
+
++ :red_circle: red
++ :red_circle: red
 + :red_circle: red
 + :red_circle::sun_with_face: red & yellow
 + :green_apple: green
-
-### Part 2:
-
-Display the red light for longer:
-
 + :green_apple: green
 + :sun_with_face: yellow
-+ :red_circle: red (3 seconds)
-+ :red_circle::sun_with_face: red & yellow
-+ :green_apple: green
++ :red_circle: red
 
 ### Part 3:
 
-Loop the light so it plays forever.
-
-> Hint: recursion worked for me...
+Loop the light so it plays forever, consider the recursion concept where the function calls itself
 
 ### Part 4:
 
@@ -108,6 +106,11 @@ Loop the second light with the following rules:
 
 :vertical_traffic_light: If successful you should see something like the
 gif above. :tada:
+
+### Finished?
+
+Have you solve it using recursion?, where the function called itself, ummm could you solve it with ```setInterval```? check the [W3School](https://www.w3schools.com/jsref/met_win_setinterval.asp) documents about it.
+
 
 ### Solutions:
 
