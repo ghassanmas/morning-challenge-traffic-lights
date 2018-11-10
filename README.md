@@ -25,29 +25,32 @@ $ npm i && npm run live
 ## Refreshment on passing function as a parameter
 
 
-Function could be passed as a  parameter to other function, specially when the function is Async, consider the following the example:
+Function could be passed as a  parameter to other function, specially when the function is Async, consider the following the examples:
+
+
+In the above example we are using the built-in JS function ```setTimeout``` to call the ```toggle``` function after 5 seconds.
+
 
 ```
 function toggle(){
- document.getElementById("someElement").classList.toggle();
+ document.getElementById("someElement").classList.toggle('hover-over');
 }
 
 setTimeout(toggle,1000*5);
 ```
-In the above example we are using the builtin JS function ```setTimeout``` to call a function after 5 seconds.
 
 
-Now consider this scinario the ```toggle```  function takes a parameter ```id```
+Now consider this scenario where the ```toggle```  function takes a parameter ```id```
 
 ```
 function toggle(id){
- document.getElementById(id).classList.toggle();
+ document.getElementById(id).classList.toggle('hover-over');
 }
 ```
 
 ```setTimeout(toggle(id),1000*5);```
 
-Why that above wont work? passing ```toggle(id)``` as parameter will return ```undefined``` since we are not passing function, we are passing whatever the function **return**. and since the function doesn't return anything, it will return ```undefined``` by default
+Why the above the wont work? passing ```toggle(id)``` as parameter will return ```undefined``` since we are not passing a function, we are passing whatever the function **return**. and since the function doesn't return anything; it will return ```undefined``` by default.
 
 To get around it we can wrap ```toggle(id)``` in an anonymous function such as:
 
@@ -56,7 +59,6 @@ setTimeout(function(){
 toggle(id);
 },1000*5);
 ```
-
 
 ## Your task
 
